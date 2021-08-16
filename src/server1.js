@@ -17,6 +17,7 @@ const router=new Router()
 const routerNuevoProducto= new Router()
 const routerProductoId= new Router()
 const routerReemplazo= new Router()
+const routerEliminar= new Router()
 
 const Contenedor= require('./contenedor.js')
 let contenedor= new Contenedor('./src/productos.json')
@@ -63,8 +64,19 @@ routerReemplazo.post('/',(req,res)=>{// no pude usar el metodo PUT ya que no exi
     }
     reemplazaproducto()
 })
+
+routerEliminar.delete('/:id',(req,res)=>{
+    const {id}=req.params
+    async function deleteproducto(){
+        let prod = await contenedor.deleteById(id)
+        res.status(200).send(prod)
+        }
+     deleteproducto()
+})
+
 app.use('/api/productos',routerProducto)
 app.use('/api/productos',routerProductoId)
 app.use('/api/agregar',routerNuevoProducto)
 app.use('/api/reemplazar',routerReemplazo)
+app.use('/api/eliminar',routerEliminar)
 
