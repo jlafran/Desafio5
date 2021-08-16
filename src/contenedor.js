@@ -64,17 +64,19 @@ class Contenedor{
     }
 
     async getById(id){
+        let prod
         try {
 			const data = await fs.promises.readFile(this.path, 'utf-8')
 			if (data) {
 				this.productos = JSON.parse(data)
 				this.productos.map((producto) => {
-					if (this.id == producto.id) return(producto)
+					if (producto.id == id)prod=producto
 				})  
 			}
 		} catch (error) {
 			return
 		}
+        return prod
     }
 
     async saveNewProduct (producto){
