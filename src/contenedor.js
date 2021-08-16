@@ -23,8 +23,13 @@ class Contenedor{
         }
     }
     async save (producto){
+        let produc=[]
         await this.getAll()
         this.id++
+        produc={
+            id: this.id,
+            producto: producto,
+        }
         this.productos.push({
             id: this.id,
             producto: producto,
@@ -32,6 +37,7 @@ class Contenedor{
         try{
             await fs.promises.writeFile(this.path,JSON.stringify(this.productos))
             console.log('guardado con exito')
+            return produc
         }
         catch(err){
             console.log('Error al escribirlo')

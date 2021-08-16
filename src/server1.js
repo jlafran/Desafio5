@@ -6,7 +6,7 @@ const PORT=8080
 app.use(express.json())
 app.use(express.urlencoded({extend:true}))
 
-app.use(express.static('public'))
+app.use('/public',express.static('./src/files'))
 
 app.listen(PORT,()=>{
     console.log("Server activo en "+ PORT)
@@ -36,8 +36,14 @@ routerProductoId.get('/:id',(req,res)=>{
     }
     productoid()
 })
+
+routerNuevoProducto.get('/',(req,res)=>{
+    res.sendFile(__dirname + '/files/form.html')
+
+})
+
 routerNuevoProducto.post('/',(req,res)=>{
-    const {producto}= req.body
+    const producto= req.body
     async function agregarproducto(){
         let prod = await contenedor.save(producto)
         res.status(200).send(prod)
