@@ -1,11 +1,4 @@
 const fs=require('fs');
-class Producto{
-    constructor(tittle,price,thumbnail){
-        this.tittle=tittle
-        this.price=price
-        this.thumbnail=thumbnail
-    }
-} 
 
 class Contenedor{
     constructor(path){
@@ -31,17 +24,19 @@ class Contenedor{
     }
 
     async getAll() {
+        const prod=[]
 		try {
 			const data = await fs.promises.readFile(this.path, 'utf-8')
 			if (data) {
 				this.productos = JSON.parse(data)
 				this.productos.map((producto) => {
-					if (this.id < producto.id) this.id = producto.id
+					if (this.id < producto.id) prod.push(producto)
 				})
 			}
 		} catch (error) {
 			return
 		}
+        return prod
 	}
 
     async deleteAll(){
@@ -74,11 +69,19 @@ class Contenedor{
 			if (data) {
 				this.productos = JSON.parse(data)
 				this.productos.map((producto) => {
-					if (this.id == producto.id) this.id = producto.id
+					if (this.id == producto.id) return(producto)
 				})  
 			}
 		} catch (error) {
 			return
 		}
     }
+
+    async saveNewProduct (producto){
+        const lista= await this.getAll()
+        const lastid=lista.lenght-1
+        producto.id=lastid + 1;
+        await this.save(producto)
+    }
 }
+module.exports=Contenedor

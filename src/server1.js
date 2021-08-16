@@ -12,21 +12,31 @@ app.listen(PORT,()=>{
     console.log("Server activo en "+ PORT)
 })
 
-app.get('/public',(req,res)=>{
-    res.sendFile( __dirname + "./public/.index.html")
-})
-
-
 const routerProducto= new Router()
 const router=new Router()
+const routerNuevoProducto= new Router()
 
+const Contenedor= require('./contenedor.js')
+let contenedor= new Contenedor('./src/productos.json')
 
-routerProducto.post('/',(req,res) => {
-    const data= req.body
-    res.send('grabado')
+routerProducto.get('/',(req,res)=>{
+    async function productostotales(){
+        let prod = await contenedor.getAll()
+        res.send(prod)
+    }
+    productostotales()
 })
 
+routerProducto.get('/:id',(req,res)=>{
+    async function productostotales(){
+        let prod = await contenedor.getById(id)
+        res.send(prod)
+    }
+    productostotales()
+})
 
-app.use('/producto',routerProducto)
+app.use('/api/productos',routerProducto)
+app.use('/api/productos/:id',routerProducto)
 app.use("/api/",router)
+app.use('/agregar',routerNuevoProducto)
 
