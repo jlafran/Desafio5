@@ -1,10 +1,9 @@
 [
     {
-        "id": 1,
+        "id": "1",
         "producto": {
-            "title": "manzana",
-            "price": 100,
-            "url": "otraURL"
+            "title": "jades",
+            "price": "200"
         }
     },
     {

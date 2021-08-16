@@ -16,6 +16,7 @@ const routerProducto= new Router()
 const router=new Router()
 const routerNuevoProducto= new Router()
 const routerProductoId= new Router()
+const routerReemplazo= new Router()
 
 const Contenedor= require('./contenedor.js')
 let contenedor= new Contenedor('./src/productos.json')
@@ -39,7 +40,6 @@ routerProductoId.get('/:id',(req,res)=>{
 
 routerNuevoProducto.get('/',(req,res)=>{
     res.sendFile(__dirname + '/files/form.html')
-
 })
 
 routerNuevoProducto.post('/',(req,res)=>{
@@ -51,7 +51,20 @@ routerNuevoProducto.post('/',(req,res)=>{
     agregarproducto()
 })
 
+routerReemplazo.get('/',(req,res)=>{
+    res.sendFile(__dirname + '/files/formreemplazar.html')
+})
+
+routerReemplazo.post('/',(req,res)=>{// no pude usar el metodo PUT ya que no existe dentro del FORM ACTION
+    const producto=req.body
+    async function reemplazaproducto(){
+    let prod = await contenedor.replaceById(producto)
+    res.status(200).send(producto)
+    }
+    reemplazaproducto()
+})
 app.use('/api/productos',routerProducto)
 app.use('/api/productos',routerProductoId)
 app.use('/api/agregar',routerNuevoProducto)
+app.use('/api/reemplazar',routerReemplazo)
 

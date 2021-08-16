@@ -94,8 +94,42 @@ class Contenedor{
 			if (data) {
 				this.productos = JSON.parse(data)
 				this.productos.map((producto) => {
-					if (producto.id == id)prod=producto
+					if (producto.id == id){
+                        prod=producto
+                    }
 				})  
+			}
+		} catch (error) {
+			return
+		}
+        return prod
+    }
+    async replaceById(produc){
+        let prod
+        let idp=parseInt(produc.id,10) 
+        idp=idp-1
+        try {
+			const data = await fs.promises.readFile(this.path, 'utf-8')
+			if (data) {
+				this.productos = JSON.parse(data)
+				this.productos.map((producto) => {
+					if (producto.id == produc.id){
+                        prod=producto
+                        let pro=this.productos[idp]
+                        pro.id=produc.id
+                        pro.producto.title=produc.title
+                        pro.producto.price=produc.price
+                        pro.producto.url=produc.url
+                        this.productos[idp]=pro
+                    }
+				})  
+                try{
+                    await fs.promises.writeFile(this.path,JSON.stringify(this.productos))
+                    console.log('guardado con exito')
+                }
+                catch(err){
+                    console.log('Error al escribirlo')
+                }
 			}
 		} catch (error) {
 			return
