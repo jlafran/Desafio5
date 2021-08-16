@@ -69,7 +69,7 @@ routerEliminar.delete('/:id',(req,res)=>{
     const {id}=req.params
     async function deleteproducto(){
         let prod = await contenedor.deleteById(id)
-        res.status(200).send(prod)
+        res.status(200).send(`Borrado el ${id}`)
         }
      deleteproducto()
 })
