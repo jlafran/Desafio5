@@ -1,17 +1,34 @@
 [
     {
-        "id":1,"producto":{
-        "title":"manzana","price":100,"url":"otraURL"
+        "id": 1,
+        "producto": {
+            "title": "manzana",
+            "price": 100,
+            "url": "otraURL"
         }
     },
     {
-        "id":2,"producto":{
-        "title":"Banana","price":60,"url":"otraURL"
+        "id": 2,
+        "producto": {
+            "title": "Banana",
+            "price": 60,
+            "url": "otraURL"
         }
     },
     {
-        "id":3,"producto":{
-        "title":"Naranja","price":80,"url":"otraURL"
+        "id": 3,
+        "producto": {
+            "title": "Naranja",
+            "price": 80,
+            "url": "otraURL"
+        }
+    },
+    {
+        "id": 4,
+        "producto": {
+            "title": "Mac",
+            "price": 100,
+            "url": "otraURL"
         }
     }
 ]

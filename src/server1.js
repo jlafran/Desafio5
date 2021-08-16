@@ -36,9 +36,16 @@ routerProductoId.get('/:id',(req,res)=>{
     }
     productoid()
 })
+routerNuevoProducto.post('/',(req,res)=>{
+    const {producto}= req.body
+    async function agregarproducto(){
+        let prod = await contenedor.save(producto)
+        res.status(200).send(prod)
+    }
+    agregarproducto()
+})
 
 app.use('/api/productos',routerProducto)
 app.use('/api/productos',routerProductoId)
-app.use("/api/",router)
-app.use('/agregar',routerNuevoProducto)
+app.use('/api/agregar',routerNuevoProducto)
 

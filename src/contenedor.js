@@ -22,6 +22,21 @@ class Contenedor{
             console.log('Error al escribirlo')
         }
     }
+    async save (producto){
+        await this.getAll()
+        this.id++
+        this.productos.push({
+            id: this.id,
+            producto: producto,
+        })
+        try{
+            await fs.promises.writeFile(this.path,JSON.stringify(this.productos))
+            console.log('guardado con exito')
+        }
+        catch(err){
+            console.log('Error al escribirlo')
+        }
+    }
 
     async getAll() {
         const prod=[]
@@ -30,7 +45,10 @@ class Contenedor{
 			if (data) {
 				this.productos = JSON.parse(data)
 				this.productos.map((producto) => {
-					if (this.id < producto.id) prod.push(producto)
+					if (this.id < producto.id) {
+                        prod.push(producto)
+                        this.id = producto.id
+                    }
 				})
 			}
 		} catch (error) {
@@ -77,13 +95,6 @@ class Contenedor{
 			return
 		}
         return prod
-    }
-
-    async saveNewProduct (producto){
-        const lista= await this.getAll()
-        const lastid=lista.lenght-1
-        producto.id=lastid + 1;
-        await this.save(producto)
     }
 }
 module.exports=Contenedor
