@@ -10,9 +10,8 @@
     {
         "id": 3,
         "producto": {
-            "title": "Naranja",
-            "price": 80,
-            "url": "otraURL"
+            "title": "Enano",
+            "price": "10000000"
         }
     },
     {

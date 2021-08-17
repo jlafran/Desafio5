@@ -8,21 +8,6 @@ class Contenedor{
     }
 
     async save (producto){
-        await this.getAll()
-        this.id++
-        this.productos.push({
-            id: this.id,
-            producto: producto,
-        })
-        try{
-            await fs.promises.writeFile(this.path,JSON.stringify(this.productos))
-            console.log('guardado con exito')
-        }
-        catch(err){
-            console.log('Error al escribirlo')
-        }
-    }
-    async save (producto){
         let produc=[]
         await this.getAll()
         this.id++
@@ -88,41 +73,27 @@ class Contenedor{
     }
 
     async getById(id){
-        let prod
         try {
 			const data = await fs.promises.readFile(this.path, 'utf-8')
 			if (data) {
 				this.productos = JSON.parse(data)
-				this.productos.map((producto) => {
-					if (producto.id == id){
-                        prod=producto
-                    }
-				})  
+				return this.productos.find((producto)=>producto.id==id)
 			}
 		} catch (error) {
 			return
 		}
-        return prod
     }
     async replaceById(produc){
-        let prod
-        let idp=parseInt(produc.id,10) 
-        idp=idp-1
         try {
 			const data = await fs.promises.readFile(this.path, 'utf-8')
 			if (data) {
 				this.productos = JSON.parse(data)
-				this.productos.map((producto) => {
-					if (producto.id == produc.id){
-                        prod=producto
-                        let pro=this.productos[idp]
-                        pro.id=produc.id
-                        pro.producto.title=produc.title
-                        pro.producto.price=produc.price
-                        pro.producto.url=produc.url
-                        this.productos[idp]=pro
-                    }
-				})  
+				this.productos.filter((producto)=>producto.id==produc.id)
+                    .forEach((producto) => {
+                        producto.producto.title=produc.title
+                        producto.producto.price=produc.price
+                        producto.producto.url=produc.url
+				    })
                 try{
                     await fs.promises.writeFile(this.path,JSON.stringify(this.productos))
                     console.log('guardado con exito')
@@ -130,11 +101,11 @@ class Contenedor{
                 catch(err){
                     console.log('Error al escribirlo')
                 }
+                return this.productos.find((producto)=>producto.id==produc.id)
 			}
 		} catch (error) {
 			return
 		}
-        return prod
     }
 }
 module.exports=Contenedor
