@@ -1,0 +1,38 @@
+doctype html
+
+head
+    meta(charset="utf-8")
+    title Vista de productos
+    meta(name="descripcion" content="Vista de productos")
+    meta(name="viewport" content="widht-device-width, initial-scale-1")
+    link(href="/public/css/normalize.css" rel="stylesheet" type="text/css")
+    link(href="/public/css/skeleton.css" rel="stylesheet" type="text/css")
+    link(rel="icon" type="image/png" href="/public/images/favicon")
+
+.container
+    .row.mt-4
+        a.button(href="/") Formulario
+        a.button.ml-2(href="/productos") Productos
+    .row.mt-4
+        .one-half.column
+            h4 Vista de productos:
+
+            if productos.leng<1
+
+                hs.button No se encontraron productos
+
+            else 
+
+                table.u-full-width
+                    thead 
+                        tr 
+                            th Nombre:
+                            th Precio:
+                            th Foto:
+                    tbody 
+                        each producto in productos
+                            tr 
+                                td #{producto.producto.title}
+                                td $#{producto.producto.price}
+                                td
+                                    img.thumbnail(src=producto.producto.url)

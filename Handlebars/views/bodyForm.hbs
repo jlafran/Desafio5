@@ -1,0 +1,25 @@
+<h4>Ingrese un producto:</h4>
+
+<form id="formulario" method="POST" action="/productos">
+    <label for="title">Titulo:</label>
+    <input type="text" name="title" id="title" class="row twelve columns" required>
+
+    <label for="price">Precio:</label>
+    <input type="text" name="price" id="price" class="row twelve columns" required>
+
+    <label for="url">Url de imagen:</label>
+    <input type="text" name="url" id="url" class="row twelve columns" required>
+
+    <input class="button-primary" type="submit" value="Enviar">
+
+</form>
+
+<script>
+    document.getElementById('formulario').onsubmit=()=>{
+        let titulo= document.getElementById('title').value
+        let precio= document.getElementById('price').value
+
+        alert('Nuevo producto agregado: \n Titulo:' + titulo + '\n Precio: $' + precio
+        )
+    }
+</script>

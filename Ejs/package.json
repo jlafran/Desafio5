@@ -1,0 +1,22 @@
+{
+  "name": "ejerciciosclase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server1": "nodemon --inspect ./src/server1.js",
+    "index": "nodemon --inspect ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "description": ""
+}

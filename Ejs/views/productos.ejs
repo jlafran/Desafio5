@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vista de productos</title>
+    <meta name="descripcion" content="Vista de productos">
+    <meta name="viewport" content="widht-device-width, initial-scale-1">
+    <link href="/public/css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/skeleton.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="/public/images/favicon">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row mt-4">
+            <a class="button" href="/">Formulario</a>
+            <a class="button ml-1" href="/productos">Productos</a>
+        </div>
+
+        <div class="row">
+            <div class="one-half column mt-4">
+
+                <div>
+                    <h4>Vista de productos:</h4>
+                    <% if(productos.length < 1){ %>
+                        <h5 class="button" style="background: lightblue">No se encontraron productos</h5>
+                    <% } else { %>
+                        <table class="u-full-width">
+                            <thead>
+                                <tr>
+                                <th>Nombre:</th>
+                                <th>Precio:</th>
+                                <th>Foto:</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% productos.forEach(function(producto){%>
+                                    <tr>
+                                        <td><%=producto.producto.title%></td>
+                                        <td>$<%=producto.producto.price%></td>
+                                        <td><img class= "thumbnail" src="<%=producto.producto.url%>"></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

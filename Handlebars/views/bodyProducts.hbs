@@ -1,0 +1,26 @@
+<div>
+    <h4>Vista de productos:</h4>
+    {{#if productos}}
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>Nombre:</th>
+                <th>Precio:</th>
+                <th>Foto:</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each productos as | producto |}}
+            <tr>
+                <td>{{producto.producto.title}}</td>
+                <td>${{producto.producto.price}}</td>
+                <td><img class= "thumbnail" src="{{producto.producto.url}}"></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <h5 class="button" style="background: lightblue">No se encontraron productos</h5>
+    {{/if}}
+</div>

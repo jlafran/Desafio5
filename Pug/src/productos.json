@@ -1,0 +1,42 @@
+[
+    {
+        "id": 2,
+        "producto": {
+            "title": "Naranja",
+            "price": 60,
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png"
+        }
+    },
+    {
+        "id": 3,
+        "producto": {
+            "title": "Enano",
+            "price": "10000000",
+            "url": "https://i.imgur.com/5bC63Yh.gif"
+        }
+    },
+    {
+        "id": 6,
+        "producto": {
+            "title": "Mac",
+            "price": 100,
+            "url": "https://i.imgur.com/BxRoIP0.jpeg"
+        }
+    },
+    {
+        "id": 9,
+        "producto": {
+            "title": "Apple",
+            "price": "40",
+            "url": "https://i.imgur.com/X99fUfw.jpg"
+        }
+    },
+    {
+        "id": 10,
+        "producto": {
+            "title": "Dell",
+            "price": "2030",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Dell_XPS_13_%289380%29.jpg"
+        }
+    }
+]
